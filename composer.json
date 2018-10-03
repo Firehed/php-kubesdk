@@ -1,0 +1,42 @@
+{
+    "name": "firehed/kube-sdk",
+    "description": "SDK for interacting with the Kubernetes API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eric Stern",
+            "email": "eric@slant.co"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Kubernetes\\": "src"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Kubernetes\\": "tests"
+      }
+    },
+    "config": {
+      "sort-packages": true
+    },
+    "require": {},
+    "require-dev": {
+        "phpstan/phpstan": "^0.10",
+        "phpstan/phpstan-phpunit": "^0.10",
+        "phpunit/phpunit": "^7.0",
+        "squizlabs/php_codesniffer": "^3.2"
+    },
+    "scripts": {
+        "test": [
+          "@phpunit",
+          "@phpstan",
+          "@phpcs"
+        ],
+        "phpunit": "phpunit",
+        "phpstan": "phpstan analyse --no-progress -c phpstan.neon -l7 .",
+        "phpcs": "phpcs ."
+    }
+}
