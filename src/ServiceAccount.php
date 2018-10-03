@@ -13,7 +13,7 @@ use RuntimeException;
  */
 class ServiceAccount implements Api
 {
-    private const SECRETS_DIRECTORY = '/var/run/secrets/kubernetes.io/serviceaccount';
+    private const DEFAULT_SECRETS_DIRECTORY = '/var/run/secrets/kubernetes.io/serviceaccount';
 
     /** @var string */
     private $baseUrl;
@@ -24,16 +24,16 @@ class ServiceAccount implements Api
     /** @var string */
     private $token;
 
-    public function __construct()
+    public function __construct(string $secretsDir = self::DEFAULT_SECRETS_DIRECTORY)
     {
-        $tokenFile = sprintf('%s/token', self::SECRETS_DIRECTORY);
+        $tokenFile = sprintf('%s/token', $secretsDir);
         $token = file_get_contents($tokenFile);
         if (!$token) {
             throw new RuntimeException('Could not read service account token');
         }
         $this->token = trim($token);
 
-        $this->caCert = sprintf('%s/ca.crt', self::SECRETS_DIRECTORY);
+        $this->caCert = sprintf('%s/ca.crt', $secretsDir);
 
         $host = getenv('KUBERNETES_SERVICE_HOST');
         $port = getenv('KUBERNETES_SERVICE_PORT');
