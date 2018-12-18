@@ -7,7 +7,7 @@ interface Api
 {
     const DEFAULT_CONNECT_TIMEOUT_MS = 500;
     const DEFAULT_TIMEOUT_MS = 3000;
-    const VERSION = '0.0.3';
+    const VERSION = '1.1.0';
 
     /**
      * Perform a GET request to the specified endpoint.
