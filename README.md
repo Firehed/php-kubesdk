@@ -28,3 +28,5 @@ You will probably want to determine which one to load approximately like this:
 ```
 
 The SDK methods are defined in the [`Kubernetes\Api`](src/Api.php) interface.
+
+Network timeouts default to 500ms on connect and 3000ms for the request.
